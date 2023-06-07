@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { BiMenu } from "react-icons/bi";
+import { BiMenu, BiSearch } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsQuestionCircle } from "react-icons/bs";
 import { RiSettings5Line } from "react-icons/ri";
@@ -14,9 +14,7 @@ import GoogleApps from "./GoogleAppsScroll/GoogleApps";
 import ChangePassword from "./ChangePassword";
 import { ToggleContext } from "../Context/ToggleProvider";
 
-
 const Nav = () => {
-
   const user = JSON.parse(Cookies.get("user"));
   const dispatch = useDispatch();
 
@@ -25,32 +23,28 @@ const Nav = () => {
   );
   // console.log(searchContact);
 
-  const {toggleSitebar,isOpen ,randomColor} = useContext(ToggleContext)
-
- 
+  const { toggleSitebar, isOpen, randomColor } = useContext(ToggleContext);
 
   const [show, setShow] = useState(false);
   const handleToggle = () => {
-    setShow(!show)
-    setShowApp(false)
-    setShowSetting(false)
+    setShow(!show);
+    setShowApp(false);
+    setShowSetting(false);
   };
 
   const [showApp, setShowApp] = useState(false);
   const handleToggleApp = () => {
-    setShowApp(!showApp)
-    setShow(false)
-    setShowSetting(false)
+    setShowApp(!showApp);
+    setShow(false);
+    setShowSetting(false);
   };
 
   const [showSetting, setShowSetting] = useState(false);
   const handleToggleSetting = () => {
-    setShowSetting(!showSetting)
-    setShowApp(false)
-    setShow(false)
+    setShowSetting(!showSetting);
+    setShowApp(false);
+    setShow(false);
   };
-
-
 
   return (
     <>
@@ -71,17 +65,17 @@ const Nav = () => {
           <h1 className="text-2xl text-slate-600">Contacts</h1>
         </div>
         <div className="w-[70%] flex justify-between items-center">
-          <div className="w-[68%] h-[48px] flex justify-start items-center space-x-4 rounded-lg bg-secondary-300">
-            <div className=" w-[40px] h-[40px] flex justify-center items-center rounded-full hover:bg-secondary-200 ml-2">
+          <div className="w-[68%] h-[48px] flex justify-start items-center space-x-4 rounded-lg md:bg-secondary-300">
+            <div className="hidden md:flex w-[40px] h-[40px] justify-center items-center rounded-full hover:bg-secondary-200 ml-2">
               <AiOutlineSearch className="text-secondary-500 text-2xl font-bold" />
             </div>
             <input
-            type="text"
-            placeholder="Search"
-            onChange={(e) => dispatch(setSearchContact(e.target.value))}
-            value={searchContact}
-            className="outline-none w-[90%] bg-secondary-300"
-          />
+              type="text"
+              placeholder="Search"
+              onChange={(e) => dispatch(setSearchContact(e.target.value))}
+              value={searchContact}
+              className="outline-none w-[90%] bg-secondary-300 hidden md:flex"
+            />
           </div>
           <div className="flex justify-center items-center rounded-full space-x-6">
             <div className="relative group cursor-pointer">
@@ -90,7 +84,10 @@ const Nav = () => {
                 <p>Help menu</p>
               </span>
             </div>
-            <div onClick={handleToggleSetting} className="relative group cursor-pointer">
+            <div
+              onClick={handleToggleSetting}
+              className="relative group cursor-pointer"
+            >
               <RiSettings5Line className="text-secondary-500 text-2xl" />
               <span className="hidden z-20 group-hover:block absolute top-7 -left-12 w-[125px] p-2 bg-secondary-500 text-white font-bold rounded scale-[70%]">
                 <p>Settings menu</p>
@@ -100,25 +97,48 @@ const Nav = () => {
           </div>
         </div>
         <div className="w-[7%] flex items-center space-x-4">
-          <div onClick={handleToggleApp} className="relative group w-[40px] h-[40px] cursor-pointer flex justify-center items-center rounded-full hover:bg-secondary-200">
+          <div
+            onClick={handleToggleApp}
+            className="relative group w-[40px] h-[40px] cursor-pointer flex justify-center items-center rounded-full hover:bg-secondary-200"
+          >
             <CgMenuGridO className="text-secondary-500 text-2xl" />
             <span className="hidden z-10 group-hover:block absolute top-12 -left-10 w-[120px] p-2 bg-secondary-500 text-white font-bold rounded scale-[70%]">
-                <p>Google Apps</p>
-              </span>
+              <p>Google Apps</p>
+            </span>
           </div>
           <GoogleApps showApp={showApp} />
           <div className="relative group ">
-            <div onClick={handleToggle} style={{ backgroundColor: randomColor }} className="w-[35px] h-[35px] group-hover:ring-1 ring-primary-300 select-none cursor-pointer flex justify-center items-center rounded-full text-white">
+            <div
+              onClick={handleToggle}
+              style={{ backgroundColor: randomColor }}
+              className="w-[35px] h-[35px] group-hover:ring-1 ring-primary-300 select-none cursor-pointer flex justify-center items-center rounded-full text-white"
+            >
               <span>{user?.name.charAt().toUpperCase()}</span>
             </div>
             <Logout show={show} randomColor={randomColor} user={user} />
             <span className="-z-50 group-hover:block hidden absolute -right-2 top-11 text-start rounded  tracking-wider scale-[90%]  w-[200px] p-2 bg-secondary-500">
-              <h6 className="text-sm font-bold text-white leading-tight">Google Account</h6>
-              <p className="text-xs text-slate-300 font-semibold leading-tight">{user?.name}</p>
-              <p className="text-xs text-slate-300 font-semibold leading-tight">{user?.email}</p>
-            </span>            
+              <h6 className="text-sm font-bold text-white leading-tight">
+                Google Account
+              </h6>
+              <p className="text-xs text-slate-300 font-semibold leading-tight">
+                {user?.name}
+              </p>
+              <p className="text-xs text-slate-300 font-semibold leading-tight">
+                {user?.email}
+              </p>
+            </span>
           </div>
         </div>
+      </div>
+      <div className=" flex-grow relative mx-5 -z-1 md:hidden">
+        <BiSearch className="absolute top-3 text-gray-500 left-4 text-lg"/>
+        <input
+          onChange={(e) => dispatch(setSearchContact(e.target.value))}
+          type="text"
+          className="pl-12  shadow-sm focus-within:outline-none bg-gray-50  text-gray-900 text-sm rounded-lg  block w-full p-2.5 "
+          value={searchContact}
+          placeholder="Search..."
+        />
       </div>
     </>
   );
