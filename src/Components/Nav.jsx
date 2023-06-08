@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { BiMenu } from "react-icons/bi";
+import { BiMenu, BiSearch } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsQuestionCircle } from "react-icons/bs";
 import { RiSettings5Line } from "react-icons/ri";
@@ -65,16 +65,17 @@ const Nav = () => {
           <h1 className="text-2xl text-slate-600">Contacts</h1>
         </div>
         <div className="w-[70%] flex justify-between items-center">
-          <div className="w-[68%] h-[48px] flex justify-start items-center space-x-4 rounded-lg bg-secondary-300">
-            <div className=" w-[40px] h-[40px] flex justify-center items-center rounded-full hover:bg-secondary-200 ml-2">
-              <AiOutlineSearch className="text-secondary-500 text-xl font-bold" />
+          <div className="w-[68%] h-[48px] flex justify-start items-center space-x-4 rounded-lg md:bg-secondary-300">
+            <div className="hidden md:flex w-[40px] h-[40px] justify-center items-center rounded-full hover:bg-secondary-200 ml-2">
+              <AiOutlineSearch className="text-secondary-500 text-2xl font-bold" />
             </div>
             <input
               type="text"
               placeholder="Search"
               onChange={(e) => dispatch(setSearchContact(e.target.value))}
               value={searchContact}
-              className="outline-none w-[90%] bg-secondary-300"
+              className="outline-none w-[90%] bg-secondary-300 hidden md:flex"
+
             />
           </div>
           <div className="flex justify-center items-center rounded-full space-x-6">
@@ -97,6 +98,7 @@ const Nav = () => {
               onClick={handleToggleSetting}
               className="relative group cursor-pointer"
             >
+              <RiSettings5Line className="text-secondary-500 text-2xl" />
               <svg
                 width="20"
                 height="20"
@@ -147,6 +149,16 @@ const Nav = () => {
             </span>
           </div>
         </div>
+      </div>
+      <div className=" flex-grow relative mx-5 -z-1 md:hidden">
+        <BiSearch className="absolute top-3 text-gray-500 left-4 text-lg"/>
+        <input
+          onChange={(e) => dispatch(setSearchContact(e.target.value))}
+          type="text"
+          className="pl-12  shadow-sm focus-within:outline-none bg-gray-50  text-gray-900 text-sm rounded-lg  block w-full p-2.5 "
+          value={searchContact}
+          placeholder="Search..."
+        />
       </div>
     </>
   );

@@ -85,7 +85,7 @@ const ContactTable = () => {
         <tr
           onClick={handleClick}
           key={contact?.id}
-          className="w-full group/item duration-200 hover:bg-secondary-300 py-3 px-1 p-4 cursor-pointer !mb"
+          className="w-full group/item duration-200 hover:bg-secondary-300 py-3 px-1 p-4 cursor-pointer !mb "
         >
           <td className="flex  justify-start items-center space-x-4 px-3 py-3 h-[55px]">
             <div
@@ -107,15 +107,18 @@ const ContactTable = () => {
             </div>
             <div
               style={{ backgroundColor: randomColor }}
-              className="block group-hover/item:hidden w-[40px] h-[40px] text-white text-2xl rounded-full flex justify-center items-center"
+              className=" group-hover/item:hidden w-[40px] h-[40px] text-white text-2xl rounded-full flex justify-center items-center"
             >
               <span className="">{contact.name.charAt().toUpperCase()}</span>
             </div>
             <p className="group-hover/item:ms-[17px]">{contact.name}</p>
           </td>
-          <td className="">{contact.email}</td>
-          <td className="">{contact.phone}</td>
+          <td className="hidden md:table-cell">{contact.email}</td>
+          <td className="hidden md:table-cell">{contact.phone}</td>
           <td className="flex justify-between">
+            <span className="hidden md:table-cell">
+              {contact?.address?.length > 25
+                ? `${contact?.address.substring(0, 25)} . . .`
             <span>
               {contact?.address?.length > 35
                 ? `${contact?.address?.substring(0, 35)} . . .`
@@ -176,8 +179,13 @@ const ContactTable = () => {
     <div className="w-[97%] p-x5">
       <div>
         <table className="w-full">
+
+          <thead className="invisible md:visible">
+            <tr className="md:border-b-[1px] border-secondary-200 text-sm font-light text-slate-500">
+
           <thead className="">
             <tr className="border-b-[1px] border-secondary-200 text-sm font-light text-slate-500 relative">
+
               <th className="text-start font-semibold w-[23%] py-4">Name</th>
               <th className="text-start font-semibold w-[23%]">Email</th>
               <th className="text-start font-semibold w-[14%]">Phone number</th>
@@ -221,7 +229,7 @@ const ContactTable = () => {
             </tr>
           </thead>
 
-          <p className="text-[10px] text-slate-500 font-bold tracking-widest py-2">
+          <p className="text-[10px] -mt-10 md:-mt-0 ml-8 md:ml-0 text-slate-500 font-bold tracking-widest py-2">
             CONTACTS ({data?.contacts?.total})
           </p>
 
