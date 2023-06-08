@@ -117,10 +117,10 @@ const ContactTable = () => {
           <td className="hidden md:table-cell">{contact.phone}</td>
           <td className="flex justify-between">
             <span className="hidden md:table-cell">
-              {/* {contact?.address?.length > 25
+              {contact?.address?.length > 25
                 ? `${contact?.address.substring(0, 25)} . . .`
-            <span> */}
-              {contact.address.length > 35
+            <span>
+              {contact?.address?.length > 35
                 ? `${contact?.address?.substring(0, 35)} . . .`
                 : contact?.address}
               {/* {contact.address} */}
@@ -183,12 +183,14 @@ const ContactTable = () => {
           <thead className="invisible md:visible">
             <tr className="md:border-b-[1px] border-secondary-200 text-sm font-light text-slate-500">
 
+          <thead className="">
+            <tr className="border-b-[1px] border-secondary-200 text-sm font-light text-slate-500 relative">
 
               <th className="text-start font-semibold w-[23%] py-4">Name</th>
               <th className="text-start font-semibold w-[23%]">Email</th>
               <th className="text-start font-semibold w-[14%]">Phone number</th>
               <th className="text-start font-semibold w-[40%]">Address</th>
-              <div className="flex items-center space-x-5 duration-400 mr-[15px] absolute md:relative right-0 top-4 -z-[1005]">
+              <div className="flex items-center space-x-5 duration-400 mr-[15px] absolute right-0 top-4 -z-[1005]">
                 <AiFillPrinter className="text-secondary-500 text-xl" />
                 <svg
                   width="20"
@@ -218,7 +220,7 @@ const ContactTable = () => {
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
-                  className="NSy2Hd cdByRd RTiFqe undefined"
+                  class="NSy2Hd cdByRd RTiFqe undefined"
                 >
                   <path fill="none" d="M0 0h24v24H0V0z"></path>
                   <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
