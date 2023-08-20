@@ -87,7 +87,7 @@ const ContactTable = () => {
           key={contact?.id}
           className="w-full group/item duration-200 hover:bg-secondary-300 py-3 px-1 p-4 cursor-pointer !mb "
         >
-          <td className="flex  justify-start items-center space-x-4 px-3 py-3 h-[55px]">
+          <td className="flex justify-start items-center space-x-4 px-3 py-3 h-[55px]">
             <div
               onClick={(e) => e.stopPropagation()}
               className="hidden group-hover/item:block"
@@ -120,12 +120,15 @@ const ContactTable = () => {
               {/* {contact?.address?.length > 25
                 ? `${contact?.address.substring(0, 25)} . . .`
             <span> */}
-              {contact.address.length > 35
+              {contact?.address?.length > 35
                 ? `${contact?.address?.substring(0, 35)} . . .`
                 : contact?.address}
               {/* {contact.address} */}
             </span>
-            <div
+            
+          </td>
+          <td>
+          <div
               onClick={(e) => e.stopPropagation()}
               className="hidden group-hover/item:block"
             >
@@ -179,11 +182,8 @@ const ContactTable = () => {
     <div className="w-[97%] p-x5">
       <div>
         <table className="w-full">
-
           <thead className="invisible md:visible">
             <tr className="md:border-b-[1px] border-secondary-200 text-sm font-light text-slate-500">
-
-
               <th className="text-start font-semibold w-[23%] py-4">Name</th>
               <th className="text-start font-semibold w-[23%]">Email</th>
               <th className="text-start font-semibold w-[14%]">Phone number</th>
